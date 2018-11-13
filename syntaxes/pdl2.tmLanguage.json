@@ -7,14 +7,51 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#support"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#operators"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.pdl2",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword.control.pdl2",
+					"match": "\\b(if|IF|while|WHILE|for|FOR)\\b"
+				},
+				{
+					"name": "keyword.control.pdl2",
+					"match": "\\b(endif|ENDIF|endwhile|ENDWHILE|ednfor|ENDFOR|record|endrecord|RECORD|ENDRECORD)\\b"
+				},
+				{
+					"name": "keyword.storage.modifier.pdl2",
+					"match": "\\b(GLOBAL)\\b"
+				},
+				{
+					"name": "keyword.other.pdl2",
+					"match": "\\b(OF|EXPORTED|FROM|IMPORT|BEGIN|END|ENDCONDITION)\\b"
+				},
+				{
+					"name": "keyword.control.type.pdl2",
+					"match": "\\b(PROGRAM|ROUTINE|CONDITION|VAR|CONST|TYPE)\\b"
+				},
+				{
+					"name": "support.type.pdl2",
+					"match": "(?i)\\b(INTEGER|REAL|BOOLEAN|STRING|ARRAY|VECTOR|POSITION|JOINTPOS|XTNDPOS|NODE|PATH|SEMAPHORE|TYPE)\\b"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.pdl2",
@@ -26,7 +63,67 @@
 					"match": "\\\\."
 				}
 			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.character.pdl2",
+					"match": "--.*$"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.pdl2",
+					"match": "\\b-?\\d+(\\.\\d*)?([eE][+-]?\\d+)?\\b"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.language.pdl2",
+					"match": "\\b(TRUE|FALSE|ON|OFF)\\b"
+				},
+				{
+					"name": "constant.language.pdl2",
+					"match": "\\b(v|vrot|vlin|z)[0-9]{1,4}\\b"
+				},
+				{
+					"name": "constant.language.pdl2",
+					"match": "\\b(vmax|fine)\\b"
+				}
+			]
+		},
+		"support": {
+			"patterns": [
+				{
+					"name": "support.type.pdl2",
+					"match": "(?i)\\b(aiotrigg|zonedata)\\b"
+				},
+				{
+					"name": "support.function.pdl2",
+					"match": "(?i)\\b(MOVE|VectMagn)\\b"
+				}
+			]
 		}
+	},
+	"operators": {
+		"patterns": [
+			{
+				"match": ":=",
+				"name": "keyword.operator.assignment.pdl2"
+			},
+			{
+				"match": "[*/+-]|\\b(MOD|DIV)\\b",
+				"name": "keyword.operator.arithmetic.pdl2"
+			},
+			{
+				"match": "(=(?<!:)|<=|>=|<>|<|>)",
+				"name": "keyword.operator.comparison.pdl2"
+			}
+		]
 	},
 	"scopeName": "source.pdl2"
 }

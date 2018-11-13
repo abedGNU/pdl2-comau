@@ -1,46 +1,51 @@
 {
     "Program": {
-        "prefix": "mod,module",
+        "prefix": "prog,program",
         "body": [
-            "MODULE ${1:name }",
+            "PROGRAM ${1:name }",
             "\t$0",
-            "ENDMODULE"
+            "BEGIN",
+            "\t$0",
+            "END  ${1:name }"
         ],
-        "description": "Module"
+        "description": "PDL2 Program"
     },
-    "PROC ... ENDPROC": {
-		"prefix": "proc",
+    "ROUTINE": {
+		"prefix": "rout, routine",
 		"body": [
-			"PROC ${1:Name}()",
-			"\t$0",
-			"ENDPROC"
-		],
-		"description": "Define FUNCTION"
-	},
-    "FUNCTION ... ENDFUNC": {
-		"prefix": "fun, func, funtion",
-		"body": [
-			"FUNCTION ${1:funcName}()",
+			"ROUTINE ${1:Name}",
             "\t$0",
-            "return ${2:ret}",
-			"ENDFUNC"
+            "BEGIN",
+            "\t$0",
+			"END ${1:Name}"
 		],
-		"description": "Define FUNCTION"
-    },
-    "TRAP ... ENDTRAP": {
-		"prefix": "trap",
+		"description": "PDL2 Routine"
+	},
+    "CONDITION": {
+		"prefix": "cond, condi,condition",
 		"body": [
-			"TRAP ${1:funcName}",
+			"CONDITION [${1:condNum}]",
 			"\t$0",
-			"ENDTRAP"
+			"ENDCONDITION"
 		],
-		"description": "Define TRAP"
+		"description": "PDL2 interrupt"
+    },
+    "TYPE": {
+		"prefix": "type, record,rec",
+		"body": [
+            "TYPE",
+            "    ${1:recordTypeName} = RECORD",
+            "    ${2:varName}:${3:varType}",
+            "\t$0",
+			"ENDRECORD"
+		],
+		"description": "PDL2 RECORD/TYPE"
     },
    	//loop
-    "For...ENDFOR": {
+    "FOR...ENDFOR": {
         "prefix": "for",
         "body": [
-            "FOR ${1:counter} FROM ${2:start} TO ${3:end} DO",
+            "FOR ${1:counter} := ${2:start} TO ${3:end} DO",
             "\t$0",
             "ENDFOR"
         ],
@@ -63,7 +68,7 @@
             "\t$0",
             "ENDIF"
         ],
-        "description": "If statement"
+        "description": "If endif"
     },
     "IF..ELSE..ENDIF": {
         "prefix": "if",
@@ -74,84 +79,70 @@
             "\t$0",
             "ENDIF"
         ],
-        "description": "If statement"
-    },
-    "IF..ELSEIF..ENDIF": {
-        "prefix": "if",
-        "body": [
-            "IF ${1:condition} THEN",
-            "\t$0",
-            "ELSEIF ${2:condition2} THEN",
-            "\t$0",
-            "ELSE",
-            "\t$0",
-            "ENDIF"
-        ],
-        "description": "If statement"
+        "description": "If else endif"
     },
     "Switch statement": {
-        "prefix": "test",
+        "prefix": "test,switch, sel, select",
         "body": [
-            "TEST (${1:variable})",
-            "CASE ${2:switch}:",
+            "SELECT ${1:variable} OF",
+            "CASE (${2:switch}):",
             "\t$0",
-            "CASE ${3:switch}:",
+            "CASE (${3:switch}):",
             "\t$0",
-            "DEFAULT:",
+            "ELSE:",
             "\t$0",
-            "ENDTEST"
+            "ENDSELECT"
         ],
-        "description": "Switch statement"
-    },
-    "Interrupt declaration": {
-        "prefix": "interrupt",
+        "description": "Switch/Select case statement"
+    },   
+    // variable declaration
+    "CONST": {
+        "prefix": "const",
         "body": [
-            "${1:GLOBAL }INTERRUPT DECL ${2:priority} WHEN ${3:trigger} DO ${4:event}"
+            "CONST ${1:CONSTVAR} = ${2:CONSTVALUE}"
         ],
-        "description": "Interrupt declaration"
+        "description": "CONSTANT VALUE"
     },
-    "Trigger when distance": {
-        "prefix": "trigger when distance",
+    "INTEGER": {
+        "prefix": "int, integer",
         "body": [
-            "TRIGGER WHEN DISTANCE=${1:position} DELAY=${2:delay} DO ${3:event}${4: PRIO=-1}"
+            "VAR ${1:varName} : INTEGER"
         ],
-        "description": "Trigger when distance"
+        "description": "Integer"
     },
-    "Trigger when path": {
-        "prefix": "trigger when path",
+    "INTEGER Array": {
+        "prefix": "int, integer",
         "body": [
-            "TRIGGER WHEN PATH=${1:distance} ${2:ONSTART} DELAY=${3:delay} DO ${4:event}${5: PRIO=-1}"
+            "VAR ${1:arrayName} : ARRAY[${2:rowNum},${3:colNum}] OF INTEGER"
         ],
-        "description": "Trigger when path"
+        "description": "Interger array"
     },
-    //move instructions
-    "MoveL .. Linear motion": {
-        "prefix": "move, movel",
+    "ARRAY": {
+        "prefix": "arr, array",
         "body": [
-            "MoveL ${1:topoint}, ${2:speed},${3:zone},${4:tool};"
+            "VAR ${1:arrayName} : ARRAY[${2:rowNum},${3:colNum}] OF ${4:dataType}"
         ],
-        "description": "MoveL .. Linear motion"
+        "description": "PDL2 Array of ...."
     },
-    "MoveJ .. Linear motion": {
-        "prefix": "move, movej",
+    "VAR EXPORTED": {
+        "prefix": "exp, exported",
         "body": [
-            "MoveL ${1:robtarget}, ${2:speed},${3:fine},${4:tool};"
+            "VAR ${1:varName} : ${2:dataType} EXPORTED FROM ${2:progName}"
         ],
-        "description": "MoveJ .. Joint motion"
+        "description": "PDL2 exoprt/import variable"
     },
-    //
-    "const .. robtarget": {
-        "prefix": "robt, robtarget",
+    "ROUTINE EXPORTED": {
+        "prefix": "exp, exported",
         "body": [
-            "CONST robtarget ${1:point} := [ [${2:x}, ${3:y},${4:z}], [1, 0, 0, 0], [0, 0, 0,0], [ 9E9, 9E9, 9E9, 9E9, 9E9, 9E9] ];"
+            "ROUTINE ${1:routineName} EXPORTED FROM ${2:progName}"
         ],
-        "description": "Robot target"
+        "description": "PDL2 exoprt/import routine"
     },
-    "pers .. robtarget": {
-        "prefix": "robt, robtarget",
+    "IMPORT": {
+        "prefix": "imp, import",
         "body": [
-            "PERS robtarget ${1:point} := [ [${2:x}, ${3:y},${4:z}], [1, 0, 0, 0], [0, 0, 0,0], [ 9E9, 9E9, 9E9, 9E9, 9E9, 9E9] ];"
+            "IMPORT '${1:progName}'"
         ],
-        "description": "Robot target"
+        "description": "PDL2 exoprt/import routine"
     }
 }
