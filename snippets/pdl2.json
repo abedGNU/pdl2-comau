@@ -1,0 +1,157 @@
+{
+    "Program": {
+        "prefix": "mod,module",
+        "body": [
+            "MODULE ${1:name }",
+            "\t$0",
+            "ENDMODULE"
+        ],
+        "description": "Module"
+    },
+    "PROC ... ENDPROC": {
+		"prefix": "proc",
+		"body": [
+			"PROC ${1:Name}()",
+			"\t$0",
+			"ENDPROC"
+		],
+		"description": "Define FUNCTION"
+	},
+    "FUNCTION ... ENDFUNC": {
+		"prefix": "fun, func, funtion",
+		"body": [
+			"FUNCTION ${1:funcName}()",
+            "\t$0",
+            "return ${2:ret}",
+			"ENDFUNC"
+		],
+		"description": "Define FUNCTION"
+    },
+    "TRAP ... ENDTRAP": {
+		"prefix": "trap",
+		"body": [
+			"TRAP ${1:funcName}",
+			"\t$0",
+			"ENDTRAP"
+		],
+		"description": "Define TRAP"
+    },
+   	//loop
+    "For...ENDFOR": {
+        "prefix": "for",
+        "body": [
+            "FOR ${1:counter} FROM ${2:start} TO ${3:end} DO",
+            "\t$0",
+            "ENDFOR"
+        ],
+        "description": "For loop"
+    },
+    "WHILE...ENDWHILE": {
+        "prefix": "while",
+        "body": [
+            "WHILE ${1:condition} DO",
+            "\t$0",
+            "ENDWHILE"
+        ],
+        "description": "While loop"
+    },
+    //conditions statements
+    "IF...ENDIF": {
+        "prefix": "if",
+        "body": [
+            "IF ${1:condition} THEN",
+            "\t$0",
+            "ENDIF"
+        ],
+        "description": "If statement"
+    },
+    "IF..ELSE..ENDIF": {
+        "prefix": "if",
+        "body": [
+            "IF ${1:condition} THEN",
+            "\t$0",
+            "ELSE",
+            "\t$0",
+            "ENDIF"
+        ],
+        "description": "If statement"
+    },
+    "IF..ELSEIF..ENDIF": {
+        "prefix": "if",
+        "body": [
+            "IF ${1:condition} THEN",
+            "\t$0",
+            "ELSEIF ${2:condition2} THEN",
+            "\t$0",
+            "ELSE",
+            "\t$0",
+            "ENDIF"
+        ],
+        "description": "If statement"
+    },
+    "Switch statement": {
+        "prefix": "test",
+        "body": [
+            "TEST (${1:variable})",
+            "CASE ${2:switch}:",
+            "\t$0",
+            "CASE ${3:switch}:",
+            "\t$0",
+            "DEFAULT:",
+            "\t$0",
+            "ENDTEST"
+        ],
+        "description": "Switch statement"
+    },
+    "Interrupt declaration": {
+        "prefix": "interrupt",
+        "body": [
+            "${1:GLOBAL }INTERRUPT DECL ${2:priority} WHEN ${3:trigger} DO ${4:event}"
+        ],
+        "description": "Interrupt declaration"
+    },
+    "Trigger when distance": {
+        "prefix": "trigger when distance",
+        "body": [
+            "TRIGGER WHEN DISTANCE=${1:position} DELAY=${2:delay} DO ${3:event}${4: PRIO=-1}"
+        ],
+        "description": "Trigger when distance"
+    },
+    "Trigger when path": {
+        "prefix": "trigger when path",
+        "body": [
+            "TRIGGER WHEN PATH=${1:distance} ${2:ONSTART} DELAY=${3:delay} DO ${4:event}${5: PRIO=-1}"
+        ],
+        "description": "Trigger when path"
+    },
+    //move instructions
+    "MoveL .. Linear motion": {
+        "prefix": "move, movel",
+        "body": [
+            "MoveL ${1:topoint}, ${2:speed},${3:zone},${4:tool};"
+        ],
+        "description": "MoveL .. Linear motion"
+    },
+    "MoveJ .. Linear motion": {
+        "prefix": "move, movej",
+        "body": [
+            "MoveL ${1:robtarget}, ${2:speed},${3:fine},${4:tool};"
+        ],
+        "description": "MoveJ .. Joint motion"
+    },
+    //
+    "const .. robtarget": {
+        "prefix": "robt, robtarget",
+        "body": [
+            "CONST robtarget ${1:point} := [ [${2:x}, ${3:y},${4:z}], [1, 0, 0, 0], [0, 0, 0,0], [ 9E9, 9E9, 9E9, 9E9, 9E9, 9E9] ];"
+        ],
+        "description": "Robot target"
+    },
+    "pers .. robtarget": {
+        "prefix": "robt, robtarget",
+        "body": [
+            "PERS robtarget ${1:point} := [ [${2:x}, ${3:y},${4:z}], [1, 0, 0, 0], [0, 0, 0,0], [ 9E9, 9E9, 9E9, 9E9, 9E9, 9E9] ];"
+        ],
+        "description": "Robot target"
+    }
+}

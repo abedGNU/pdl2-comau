@@ -1,0 +1,26 @@
+{
+    "name": "pdl2-comau",
+    "displayName": "PDL2 Comau",
+    "description": "PDL2 Comau Robot programming language",
+    "version": "0.0.1",
+    "publisher": "Abed",
+    "engines": {
+        "vscode": "^1.29.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "pdl2",
+            "aliases": ["PDL2", "pdl2"],
+            "extensions": ["pdl lsv"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "pdl2",
+            "scopeName": "source.pdl2",
+            "path": "./syntaxes/pdl2.tmLanguage.json"
+        }]
+    }
+}
