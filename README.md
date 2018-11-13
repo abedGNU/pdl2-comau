@@ -1,14 +1,27 @@
 # pdl2-comau README
 
-PDL2 Comau Robots programming language
+PDL2 Comau Robots programming language support
+
+* [GitHub Repository](https://github.com/abedGNU/pdl2-comau.git)
 
 ## Features
 
+Syntax highlight
+
+![screenshot](images/syntax.png)
+
+Code completion
+    - Control statements
+    - Type definition
+    
+![screenshot](images/completion.gif)
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 0.0.1
 
-Initial release 
+Initial release
+
+## TODO
+
+Complete syntax highlighting, autocompletion and routine outline

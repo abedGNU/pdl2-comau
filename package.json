@@ -6,7 +6,11 @@
     "publisher": "Abed",
     "engines": {
         "vscode": "^1.29.0"
-    },
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/abedGNU/pdl2-comau.git"
+	},
     "categories": [
         "Programming Languages"
     ],
