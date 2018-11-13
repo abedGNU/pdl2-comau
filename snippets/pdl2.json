@@ -5,7 +5,7 @@
             "PROGRAM ${1:name }",
             "\t$0",
             "BEGIN",
-            "\t$0",
+            "\t",
             "END  ${1:name }"
         ],
         "description": "PDL2 Program"
@@ -16,7 +16,7 @@
 			"ROUTINE ${1:Name}",
             "\t$0",
             "BEGIN",
-            "\t$0",
+            "\t",
 			"END ${1:Name}"
 		],
 		"description": "PDL2 Routine"
@@ -30,16 +30,26 @@
 		],
 		"description": "PDL2 interrupt"
     },
-    "TYPE": {
-		"prefix": "type, record,rec",
+    "RECORD": {
+		"prefix": "type,record,rec",
 		"body": [
             "TYPE",
-            "    ${1:recordTypeName} = RECORD",
-            "    ${2:varName}:${3:varType}",
+            "\t${1:recordTypeName} = RECORD",
+            "\t${2:varName}:${3:varType}",
             "\t$0",
 			"ENDRECORD"
 		],
-		"description": "PDL2 RECORD/TYPE"
+		"description": "PDL2 record"
+    },
+    "NODEDEF": {
+		"prefix": "type, nodedef,node",
+		"body": [
+            "TYPE",
+            "\t${1:typeName} = NODEDEF",
+            "\t$0",
+			"ENDNODEDEF"
+		],
+		"description": "PDL2 node definition"
     },
    	//loop
     "FOR...ENDFOR": {
@@ -76,7 +86,7 @@
             "IF ${1:condition} THEN",
             "\t$0",
             "ELSE",
-            "\t$0",
+            "\t",
             "ENDIF"
         ],
         "description": "If else endif"
@@ -88,9 +98,9 @@
             "CASE (${2:switch}):",
             "\t$0",
             "CASE (${3:switch}):",
-            "\t$0",
+            "\t",
             "ELSE:",
-            "\t$0",
+            "\t",
             "ENDSELECT"
         ],
         "description": "Switch/Select case statement"
