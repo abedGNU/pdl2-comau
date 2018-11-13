@@ -1,92 +1,102 @@
 {
-    "name": "pdl2-comau",
-    "displayName": "PDL2 Comau",
-    "description": "PDL2 Comau Robot programming language",
-    "version": "0.0.1",
-    "publisher": "Abed",
-    "engines": {
-        "vscode": "^1.29.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/abedGNU/pdl2-comau.git"
-	},
-    "categories": [
-        "Programming Languages"
+  "name": "pdl2-comau",
+  "displayName": "PDL2 Comau",
+  "description": "PDL2 Comau Robot programming language",
+  "version": "0.1.0",
+  "publisher": "Abed",
+  "engines": {
+    "vscode": "^1.29.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abedGNU/pdl2-comau.git"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "pdl2",
+        "aliases": [
+          "PDL2",
+          "pdl2"
+        ],
+        "extensions": [
+          "pdl",
+          "lsv"
+        ],
+        "configuration": "./language-configuration.json"
+      }
     ],
-    "contributes": {
-        "languages": [{
-            "id": "pdl2",
-            "aliases": ["PDL2", "pdl2"],
-            "extensions": ["pdl", "lsv"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "pdl2",
-            "scopeName": "source.pdl2",
-            "path": "./syntaxes/pdl2.tmLanguage.json"
-        }],
-		"snippets": [
-			{
-				"language": "pdl2",
-				"path": "./snippets/pdl2.json"
-			}
-        ],
-        "commands": [
-            {
-                "command": "pdl2.editFormatterParameters",
-                "title": "pdl2: Edit Formatter Parameters"
-            }
-        ],
-        "configuration": {
-			"type": "object",
-			"title": "pdl2",
-			"properties": {
-				"pdl2.formatter.engine": {
-					"type": "string",
-					"default": "",
-					"description": "Choose the Formatter engine to be used",
-					"enum": [
-						"jcf",
-						"ptop"
-					]
-				},
-				"pdl2.formatter.enginePath": {
-					"type": "string",
-					"default": "",
-					"description": "Indicates the Formatter app path"
-				},
-				"pdl2.formatter.engineParameters": {
-					"type": "string",
-					"default": "",
-					"description": "Indicates the configuration file for the selected engine"
-				},
-				"pdl2.format.indent": {
-					"type": "number",
-					"default": 4,
-					"description": "The number of spaces used for indentation"
-				},
-				"pdl2.format.wrapLineLength": {
-					"type": "number",
-					"default": 80,
-					"description": "Maximum amount of characters per line"
-				},
-				"pdl2.tags.autoGenerate": {
-					"type": "boolean",
-					"default": true,
-					"description": "Controls if the extension should automatically generate tags in projects opened for the first time"
-				},
-				"pdl2.codeNavigation": {
-					"type": "string",
-					"default": "workspace",
-					"scope": "resource",
-					"description": "Select how the code navigation should work",
-					"enum": [
-						"workspace",
-						"file"
-					]
-				}
-			}
-		}
+    "grammars": [
+      {
+        "language": "pdl2",
+        "scopeName": "source.pdl2",
+        "path": "./syntaxes/pdl2.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "pdl2",
+        "path": "./snippets/pdl2.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "pdl2.editFormatterParameters",
+        "title": "pdl2: Edit Formatter Parameters"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "pdl2",
+      "properties": {
+        "pdl2.formatter.engine": {
+          "type": "string",
+          "default": "",
+          "description": "Choose the Formatter engine to be used",
+          "enum": [
+            "jcf",
+            "ptop"
+          ]
+        },
+        "pdl2.formatter.enginePath": {
+          "type": "string",
+          "default": "",
+          "description": "Indicates the Formatter app path"
+        },
+        "pdl2.formatter.engineParameters": {
+          "type": "string",
+          "default": "",
+          "description": "Indicates the configuration file for the selected engine"
+        },
+        "pdl2.format.indent": {
+          "type": "number",
+          "default": 4,
+          "description": "The number of spaces used for indentation"
+        },
+        "pdl2.format.wrapLineLength": {
+          "type": "number",
+          "default": 80,
+          "description": "Maximum amount of characters per line"
+        },
+        "pdl2.tags.autoGenerate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Controls if the extension should automatically generate tags in projects opened for the first time"
+        },
+        "pdl2.codeNavigation": {
+          "type": "string",
+          "default": "workspace",
+          "scope": "resource",
+          "description": "Select how the code navigation should work",
+          "enum": [
+            "workspace",
+            "file"
+          ]
+        }
+      }
     }
+  }
 }
