@@ -24,4 +24,4 @@ Initial release
 
 ## TODO
 
-Complete syntax highlighting, autocompletion and routine outline
+Complete syntax highlighting of predefined variables, autocompletion and routine outline
